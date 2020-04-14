@@ -30,14 +30,16 @@ class Auth {
       return firebase.auth().currentUser.getIdToken(true)
         .then((idToken) => {
           axios.defaults.headers.common = {'Authorization': `Bearer ${idToken}`}
-          store.dispatch('me/loadMyInformation')
           return store.dispatch('auth/authenticate', {
             name: displayName ? displayName : 'Jhon Doe',
             email,
             idToken
           }).then(() => {
-            if (router.currentRoute.name == 'login' || router.currentRoute.name == 'join')
-              router.push({ name: 'home' })
+            return store.dispatch('me/loadMyInformation').then(() => {
+              console.log('loaded me')
+              if (router.currentRoute.name == 'login' || router.currentRoute.name == 'join')
+                router.push({ name: 'home' })
+            })
           })
         }).catch(e => {
           console.log(e)

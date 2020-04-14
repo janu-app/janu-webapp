@@ -1,9 +1,10 @@
 <template>
   <nav class="navbar is-white" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-    </a>
+    <router-link class="navbar-item" to="/">
+      <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
+      I.E. Lucyana
+    </router-link>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navBaeeMenu" @click="onClickMenu">
       <span aria-hidden="true"></span>
@@ -18,7 +19,7 @@
           <router-link :to="{ name: 'home' }">Inicio</router-link>
         </div>
         <div class="navbar-item">
-          <a href="#" @click.prevent="onClickLogout">Salir</a>
+          {{$store.getters['me/me'].name}} (<a href="#" @click.prevent="onClickLogout">Salir</a>)
         </div>
       </div>
     </div>

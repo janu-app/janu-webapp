@@ -70,7 +70,7 @@
     </td>
     <td>
       <div class="control">
-        <input class="input is-small" v-model="student.optional_date" @change="onChange" />
+        <input class="input is-small" v-model="student.optional_date" @change="onChange" v-mask="'##/##/####'" />
       </div>
     </td>
     <td>
@@ -86,6 +86,9 @@
   </tr>
 </template>
 <script>
+import moment from 'moment'
+import {mask} from 'vue-the-mask'
+
 export default {
   props: ['studentDetails', 'index'],
   data() {
@@ -95,9 +98,15 @@ export default {
   },
   mounted() {
     this.student = this.studentDetails
+    this.student.optional_date = moment(this.student.optional_date).format("DD/MM/YYYY")
   },
   methods: {
     async onChange() {
+      if (this.student.optional_date && !moment(this.student.optional_date, "DD/MM/YYYY").isValid()){
+        alert('Fecha no válida')
+        this.student.optional_date = ''
+        return
+      }
       await this.$store.dispatch("sessions/updateSessionDetail", {
         id: this.student.detail_id,
         sessionId: this.student.session_id,
@@ -110,12 +119,13 @@ export default {
         optional_resources: this.student.optional_resources,
         optional_meeting: this.student.optional_meeting,
         optional_meeting_via: this.student.optional_meeting_via,
-        optional_date: this.student.optional_date,
+        optional_date: moment(this.student.optional_date, "DD/MM/YYYY").format(),
         optional_theme: this.student.optional_theme,
         comments: this.student.comments
       })
     }
-  }
+  },
+  directives: {mask}
 };
 </script>
 

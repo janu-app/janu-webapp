@@ -19,7 +19,7 @@
 
       <div class="container is-fluid" style="margin-top: 20px;">
         <div class="content">
-          <router-link :to="{name: 'sesionesaprendoencasa'}"><feather type="feather"></feather> Regresar</router-link>
+          <router-link :to="{name: 'sesionesaprendoencasa'}"><feather type="arrow-left"></feather> Regresar</router-link>
         </div>
         <h3 class="title is-4 has-text-centered">FICHA PARA DOCENTES - SEGUIMIENTO DE SESIONES PROGRAMADAS "APRENDO EN CASA"</h3>
         <h4 class="subtitle is-5 has-text-centered">Grado y sección: {{session.grade_name}}</h4>
@@ -28,13 +28,13 @@
             <div class="field is-narrow">
               <label class="label is-small">Nro. Sesión</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Nro. Sesión" v-model="session.number" />
+                <input class="input" type="text" placeholder="Nro. Sesión" v-model="session.number" readonly />
               </div>
             </div>
             <div class="field">
               <label class="label is-small">Nombre sesión</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Nombre sesión" v-model="session.name" />
+                <input class="input" type="text" placeholder="Nombre sesión" v-model="session.name" readonly />
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@
               <label class="label is-small">Area</label>
               <div class="control">
                 <div class="select">
-                  <select v-model="session.area_id">
+                  <select v-model="session.area_id" disabled>
                     <option v-for="area in $store.getters['areas/areas']" :value="area.id" :key="area.id">{{area.name}}</option>
                   </select>
                 </div>
@@ -54,15 +54,15 @@
             <div class="field">
               <label class="label is-small">Competencias</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Competencias" v-model="session.competences" />
+                <input class="input" type="text" placeholder="Competencias" v-model="session.competences" readonly />
               </div>
             </div>
           </div>
         </div>
-        <div class="container is-fluid has-text-right">
+        <!-- <div class="container is-fluid has-text-right">
           <router-link class="button" :to="{name: 'sesionesaprendoencasa'}">Cancelar</router-link>
           <button style="margin-left: 20px" class="button is-primary">Guardar</button>
-        </div>
+        </div> -->
         <div class="table-container" style="margin-top: 20px">
           <table class="table is-fullwidth is-bordered is-hoverable">
             <thead>

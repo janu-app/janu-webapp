@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Vuelidate from 'vuelidate'
 import VueFeather from 'vue-feather'
+import VueTheMask from 'vue-the-mask'
 
 import './config'
 
@@ -19,6 +20,7 @@ Vue.config.productionTip = false
 
 Vue.use(Vuex)
 Vue.use(Vuelidate)
+Vue.use(VueTheMask)
 Vue.use(VueFeather)
 
 const unsubscribe = firebase.auth().onAuthStateChanged((user) => {

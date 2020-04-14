@@ -17,7 +17,7 @@ export default {
   },
   actions: {
     async loadMyInformation({ commit }) {
-      const response = axios.get('/me')
+      const response = await axios.get('/me')
       commit('setMyInformation', response.data)
     }
   }
