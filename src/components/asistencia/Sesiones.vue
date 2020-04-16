@@ -14,7 +14,7 @@
         </nav>
         <area-selector @dirty="cleanSelection" @selected="onSelectedArea" />
         <p class="content has-text-right" v-if="$store.getters['classrooms/classroom'] && $store.getters['classrooms/classroom'].classroomId">
-          <router-link class="button is-primary" :to="{ name: 'newsesionesaprendoencasaform' }">Registrar sessión</router-link>
+          <router-link class="button is-primary" :to="{ name: 'newsesionesaprendoencasaform' }">Registrar sesión</router-link>
         </p>
         <session-table :sessions="sessions" />
       </div>

@@ -31,6 +31,12 @@
                 <input class="input" type="text" placeholder="Nro. Sesión" v-model="session.number" readonly />
               </div>
             </div>
+            <div class="field is-narrow">
+              <label class="label is-small">Nro. Semana</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Nro. Semana" v-model="session.week_number" readonly />
+              </div>
+            </div>
             <div class="field">
               <label class="label is-small">Nombre sesión</label>
               <div class="control">

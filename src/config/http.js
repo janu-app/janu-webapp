@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 axios.defaults.baseURL = {
-    'development': 'https://janu.yian.org.pe',
+    'development': 'http://localhost:3000',
     'staging': 'https://janu.yian.org.pe',
     'production': 'https://janu.yian.org.pe',
     //'production': 'https://api.janu.org.pe'

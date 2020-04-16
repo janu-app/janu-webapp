@@ -102,12 +102,7 @@ export default {
   },
   methods: {
     async onChange() {
-      if (this.student.optional_date && !moment(this.student.optional_date, "DD/MM/YYYY").isValid()){
-        alert('Fecha no válida')
-        this.student.optional_date = ''
-        return
-      }
-      await this.$store.dispatch("sessions/updateSessionDetail", {
+      const data = {
         id: this.student.detail_id,
         sessionId: this.student.session_id,
         participated: this.student.participated,
@@ -119,10 +114,17 @@ export default {
         optional_resources: this.student.optional_resources,
         optional_meeting: this.student.optional_meeting,
         optional_meeting_via: this.student.optional_meeting_via,
-        optional_date: moment(this.student.optional_date, "DD/MM/YYYY").format(),
         optional_theme: this.student.optional_theme,
         comments: this.student.comments
-      })
+      }
+      if (this.student.optional_date) {
+        if (!moment(this.student.optional_date, "DD/MM/YYYY").isValid()) {
+          alert('Fecha no válida')
+        } else {
+          data.optional_date = moment(this.student.optional_date, "DD/MM/YYYY").format()
+        }
+      }
+      await this.$store.dispatch("sessions/updateSessionDetail", data)
     }
   },
   directives: {mask}

@@ -1,20 +1,24 @@
 <template>
 <div>
   <div class="notification" v-if="sessions.length == 0">
-    No se encontraron resultados
+    No se encontraron sesiones registradas.
   </div>
   <div class="table-container" v-if="sessions.length > 0">
     <table class="table is-fullwidth is-hoverable">
       <thead>
         <tr>
           <th>Nro. Sesión</th>
+          <th>Nro. Semana</th>
           <th>Nombre de la sesión</th>
+          <th>Competencias</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="session in sessions" :key="session.id" @click="onClickSession(session)">
           <td>{{session.number}}</td>
+          <td>{{session.week_number}}</td>
           <td>{{session.name}}</td>
+          <td>{{session.competences}}</td>
         </tr>
       </tbody>
     </table>

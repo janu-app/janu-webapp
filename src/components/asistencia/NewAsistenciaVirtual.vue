@@ -24,6 +24,12 @@
                 <input class="input" type="text" placeholder="Nro. Sesión" v-model="form.number" />
               </div>
             </div>
+            <div class="field is-narrow">
+              <label class="label is-small">Nro. Semana</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Nro. Semana" v-model="form.week_number" />
+              </div>
+            </div>
             <div class="field">
               <label class="label is-small">Nombre sesión</label>
               <div class="control">
@@ -69,6 +75,7 @@ export default {
   data() {
     return {
       form: {
+        week_number: '',
         number: '',
         name: '',
         competences: '',
