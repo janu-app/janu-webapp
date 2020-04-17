@@ -52,7 +52,7 @@
     </td>
     <td>
       <div class="control">
-        <input class="input is-small" v-model="student.optional_resources" @change="onChange" />
+        <input class="input is-small" v-model="student.optional_resources" @change="onChange" maxlength="255" />
       </div>
     </td>
     <td>
@@ -65,7 +65,7 @@
     </td>
     <td>
       <div class="control">
-        <input class="input is-small" v-model="student.optional_meeting_via" @change="onChange" />
+        <input class="input is-small" v-model="student.optional_meeting_via" @change="onChange" maxlength="255" />
       </div>
     </td>
     <td>
@@ -75,12 +75,12 @@
     </td>
     <td>
       <div class="control">
-        <input class="input is-small" v-model="student.optional_theme" @change="onChange" />
+        <input class="input is-small" v-model="student.optional_theme" @change="onChange"  maxlength="255" />
       </div>
     </td>
     <td>
       <div class="control">
-        <input class="input is-small" v-model="student.comments" @change="onChange" />
+        <input class="input is-small" v-model="student.comments" @change="onChange" maxlength="255" />
       </div>
     </td>
   </tr>

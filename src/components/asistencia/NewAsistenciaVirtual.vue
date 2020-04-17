@@ -21,19 +21,19 @@
             <div class="field is-narrow">
               <label class="label is-small">Nro. Sesión</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Nro. Sesión" v-model="form.number" />
+                <input class="input" type="text" placeholder="Nro. Sesión" v-model="form.number" maxlength="9" />
               </div>
             </div>
             <div class="field is-narrow">
               <label class="label is-small">Nro. Semana</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Nro. Semana" v-model="form.week_number" />
+                <input class="input" type="text" placeholder="Nro. Semana" v-model="form.week_number" maxlength="9" />
               </div>
             </div>
             <div class="field">
               <label class="label is-small">Nombre sesión</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Nombre sesión" v-model="form.name" />
+                <input class="input" type="text" placeholder="Nombre sesión" v-model="form.name" maxlength="255" />
               </div>
             </div>
           </div>
@@ -53,7 +53,7 @@
             <div class="field">
               <label class="label is-small">Competencias</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Competencias" v-model="form.competences" />
+                <input class="input" type="text" placeholder="Competencias" v-model="form.competences" maxlength="255" />
               </div>
             </div>
           </div>
