@@ -10,7 +10,7 @@
                 <li>
                   <router-link :to="{ name: 'sesionesaprendoencasa'}">Aprendo en Casa</router-link>
                 </li>
-                <li v-if="$store.getters['me/me'].id == 'bd6b4cda-8a50-48d0-a7d7-3604275fc07b'">
+                <li v-if="$store.getters['me/me'].id == 'bd6b4cda-8a50-48d0-a7d7-3604275fc07b' || $store.getters['me/me'].id == '1cb2d774-b6dd-434f-a6b2-3b1c2f2a477e'">
                   <router-link :to="{ name: 'reportDirectivos'}">Directivos</router-link>
                 </li>
               </ul>

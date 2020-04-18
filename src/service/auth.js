@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser';
 import store from '@/store'
 import router from '@/router'
 import * as firebase from 'firebase/app'
@@ -27,9 +28,12 @@ class Auth {
   onAuthStateChanged(user) {
     if (user) {
       const { displayName, email } = user
+      Sentry.configureScope(function(scope) {
+        scope.setUser({ email });
+      });
+      
       return firebase.auth().currentUser.getIdToken(true)
         .then((idToken) => {
-          console.log(idToken)
           axios.defaults.headers.common = {'Authorization': `Bearer ${idToken}`}
           return store.dispatch('auth/authenticate', {
             name: displayName ? displayName : 'Jhon Doe',
@@ -37,7 +41,6 @@ class Auth {
             idToken
           }).then(() => {
             return store.dispatch('me/loadMyInformation').then(() => {
-              console.log('loaded me')
               if (router.currentRoute.name == 'login' || router.currentRoute.name == 'join')
                 router.push({ name: 'home' })
             })

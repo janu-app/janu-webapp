@@ -28,7 +28,6 @@ export default {
       return response.data.results
     },
     async loadSessionsReportData(store, params) {
-      console.log(params)
       const response = await axios.get('/sessions/report', { params })
       return response.data.results
     },

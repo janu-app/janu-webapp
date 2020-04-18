@@ -86,6 +86,7 @@
   </tr>
 </template>
 <script>
+import * as Sentry from '@sentry/browser';
 import moment from 'moment'
 import {mask} from 'vue-the-mask'
 
@@ -124,7 +125,11 @@ export default {
           data.optional_date = moment(this.student.optional_date, "DD/MM/YYYY").format()
         }
       }
-      await this.$store.dispatch("sessions/updateSessionDetail", data)
+      try {
+        await this.$store.dispatch("sessions/updateSessionDetail", data)
+      } catch(e) {
+        Sentry.captureException(e)
+      }
     }
   },
   directives: {mask}

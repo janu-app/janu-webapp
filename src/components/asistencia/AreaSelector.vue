@@ -47,11 +47,13 @@ export default {
         turno: "",
         grado: "",
         area: ""
-      }
+      },
+      classrooms: []
     }
   },
-  mounted() {
-    this.$store.dispatch('classrooms/loadClassroomInfo')
+  async mounted() {
+    this.classrooms = (await this.$store.dispatch('classrooms/loadClassroomInfo')).results
+    console.log('class', this.classrooms)
     if (this.$store.getters["classrooms/classroom"]) {
       this.form.turno = this.$store.getters["classrooms/classroom"].turno;
       this.form.grado = this.$store.getters["classrooms/classroom"].classroomId;
@@ -66,8 +68,9 @@ export default {
     },
     onChangeGrado() {
       this.form.area = ''
-      const turno = this.$store.getters['classrooms/data'].filter(t => t.turno == this.form.turno)[0]
-      if (this.form.grado) {
+      const turno = this.classrooms.filter(t => t.turno == this.form.turno)[0]
+      console.log(turno)
+      if (turno && this.form.grado) {
         this.$emit('selected', Object.assign({}, this.form, turno.grades.filter(g => g.classroomId == this.form.grado)[0]))
       } else {
         this.$emit('dirty', this.form)
@@ -80,9 +83,13 @@ export default {
   computed: {
     grades() {
       // console.log(this.$store.getters['classrooms/data'])
-      const turno = this.$store.getters['classrooms/data'].filter(t => t.turno == this.form.turno)[0]
+      let classroomData = this.classrooms
+      let turno = {}
+      if (classroomData) {
+        turno = classroomData.filter(t => t.turno == this.form.turno)[0]
+      }
       //const turno = this.$store.getters['me/me'].assignments.filter(t => t.id == this.form.turno)[0]
-      return turno ? turno.grades : []
+      return turno && turno.grades ? turno.grades : []
       //return []
     },
     // areas() {

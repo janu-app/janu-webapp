@@ -4,6 +4,9 @@ import Vuelidate from 'vuelidate'
 import VueFeather from 'vue-feather'
 import VueTheMask from 'vue-the-mask'
 
+import * as Sentry from '@sentry/browser';
+import { Vue as VueIntegration } from '@sentry/integrations';
+
 import './config'
 
 import * as firebase from "firebase/app"
@@ -22,6 +25,12 @@ Vue.use(Vuex)
 Vue.use(Vuelidate)
 Vue.use(VueTheMask)
 Vue.use(VueFeather)
+
+Sentry.init({
+  release: `janu-webapp@${process.env.npm_package_version||'0.0.1'}`,
+  dsn: 'https://2f2bc3d65e1542e7880be71c0dfc734d@o379917.ingest.sentry.io/5205265',
+  integrations: [new VueIntegration({Vue, attachProps: true})],
+});
 
 const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
   auth.onAuthStateChanged(user).then(() => {

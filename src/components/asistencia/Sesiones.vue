@@ -27,6 +27,8 @@
 import HomeLayout from "../layout/HomeLayout.vue";
 import SessionTable from "./SessionTable.vue";
 
+import * as Sentry from '@sentry/browser';
+
 export default {
   data() {
     return {
@@ -39,7 +41,11 @@ export default {
     };
   },
   async mounted() {
-    this.sessions = await this.$store.dispatch('sessions/loadSessionsReportData', { teacherId: this.$store.getters['me/me'].person_id, state: 'ACTIVE'})
+    try {
+      this.sessions = await this.$store.dispatch('sessions/loadSessionsReportData', { teacherId: this.$store.getters['me/me'].person_id, state: 'ACTIVE'})
+    } catch(e) {
+      Sentry.captureException(e)
+    }
   },
   methods: {
     async cleanSelection() {

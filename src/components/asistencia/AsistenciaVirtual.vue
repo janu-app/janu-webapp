@@ -128,6 +128,8 @@
   </home-layout>
 </template>
 <script>
+import * as Sentry from '@sentry/browser';
+
 import HomeLayout from "../layout/HomeLayout.vue";
 import SessionDetail from './SessionDetail.vue'
 
@@ -172,7 +174,8 @@ export default {
         })
         alert('Sesión actualizada')
       } catch (e) {
-        alert('No se pudo actualizar el registro por favor, vuelva a intentar')
+        Sentry.captureException(e)
+        alert(`No se pudo actualizar el registro por favor, vuelva a intentar - ${e}`)
       }
     }
   },

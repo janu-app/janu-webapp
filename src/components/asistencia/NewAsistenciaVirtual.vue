@@ -87,6 +87,8 @@
   </home-layout>
 </template>
 <script>
+import * as Sentry from '@sentry/browser';
+
 import HomeLayout from "../layout/HomeLayout.vue";
 import Loading from "../layout/common/Loading.vue";
 import AreaSelector from './AreaSelector.vue'
@@ -143,6 +145,7 @@ export default {
         })
       } catch (e) {
         this.showLoading = false
+        Sentry.captureException(e)
         alert('No se pudo registrar, intente de nuevo')
       }
     }

@@ -33,6 +33,7 @@ export default {
     async loadClassroomInfo({ commit }) {
       const response = await axios.get('/classrooms')
       commit('setGradesData', response.data.results)
+      return { results: response.data.results }
     },
     async loadStudents({ commit }, { classroomId }) {
       const response = await axios.get(`/classrooms/${classroomId}/students`)
