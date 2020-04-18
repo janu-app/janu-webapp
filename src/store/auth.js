@@ -6,6 +6,9 @@ export default {
     getters: {
       loggedIn (state) {
         return state.user !== null
+      },
+      user (state) {
+        return state.user ? state.user : {}
       }
     },
     mutations: {
@@ -17,8 +20,8 @@ export default {
       }
     },
     actions: {
-      authenticate ({ commit }, { name, email}) {
-        commit('login', { name, email })
+      authenticate ({ commit }, data) {
+        commit('login', data)
       },
       logout ({ commit }) {
         commit('logout')

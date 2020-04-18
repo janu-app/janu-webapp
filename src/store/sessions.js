@@ -8,6 +8,9 @@ export default {
   getters: {
     sessions(state) {
       return state.sessions ? state.sessions : [];
+    },
+    numbers() {
+      return ['PRIMERA', 'SEGUNDA', 'TERCERA', 'CUARTA', 'QUINTA', 'SEXTA', 'SEPTIMA', 'OCTAVA', 'NOVENA', 'DÉCIMA']
     }
   },
   mutations: {
@@ -24,12 +27,22 @@ export default {
       })
       return response.data.results
     },
+    async loadSessionsReportData(store, params) {
+      console.log(params)
+      const response = await axios.get('/sessions/report', { params })
+      return response.data.results
+    },
     async loadSession(obj, { sessionId }) {
       const response = await axios.get(`/sessions/${sessionId}`)
       return response.data
     },
     async create(data, session) {
       const response = await axios.post('/sessions', session)
+      return response.data
+      //commit('setSessionInformation', Object.assign(data, { turno, grado, area }))
+    },
+    async update(data, { sessionId, ...session}) {
+      const response = await axios.put(`/sessions/${sessionId}`, session)
       return response.data
       //commit('setSessionInformation', Object.assign(data, { turno, grado, area }))
     },

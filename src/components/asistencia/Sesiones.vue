@@ -12,9 +12,11 @@
             </li>
           </ul>
         </nav>
-        <area-selector @dirty="cleanSelection" @selected="onSelectedArea" />
-        <p class="content has-text-right" v-if="$store.getters['classrooms/classroom'] && $store.getters['classrooms/classroom'].classroomId">
-          <router-link class="button is-primary" :to="{ name: 'newsesionesaprendoencasaform' }">Registrar sesión</router-link>
+        <h4 class="title is-4">Mis sesiones</h4>
+        <h5 class="subtitle is-5">Aquí encontrarás las sesiones que haz registrado</h5>
+        
+        <p class="content has-text-right">
+          <router-link class="button is-primary" :to="{ name: 'newsesionesaprendoencasaform' }">Nueva sesión</router-link>
         </p>
         <session-table :sessions="sessions" />
       </div>
@@ -23,7 +25,6 @@
 </template>
 <script>
 import HomeLayout from "../layout/HomeLayout.vue";
-import AreaSelector from "./AreaSelector.vue";
 import SessionTable from "./SessionTable.vue";
 
 export default {
@@ -36,6 +37,9 @@ export default {
       },
       sessions: []
     };
+  },
+  async mounted() {
+    this.sessions = await this.$store.dispatch('sessions/loadSessionsReportData', { teacherId: this.$store.getters['me/me'].person_id, state: 'ACTIVE'})
   },
   methods: {
     async cleanSelection() {
@@ -52,8 +56,7 @@ export default {
   },
   components: {
     HomeLayout,
-    SessionTable,
-    AreaSelector
+    SessionTable
   }
 };
 </script>

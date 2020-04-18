@@ -29,6 +29,7 @@ class Auth {
       const { displayName, email } = user
       return firebase.auth().currentUser.getIdToken(true)
         .then((idToken) => {
+          console.log(idToken)
           axios.defaults.headers.common = {'Authorization': `Bearer ${idToken}`}
           return store.dispatch('auth/authenticate', {
             name: displayName ? displayName : 'Jhon Doe',

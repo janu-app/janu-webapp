@@ -10,6 +10,9 @@
                 <li>
                   <router-link :to="{ name: 'sesionesaprendoencasa'}">Aprendo en Casa</router-link>
                 </li>
+                <li v-if="$store.getters['me/me'].id == 'bd6b4cda-8a50-48d0-a7d7-3604275fc07b'">
+                  <router-link :to="{ name: 'reportDirectivos'}">Directivos</router-link>
+                </li>
               </ul>
             </aside>
           </div>
