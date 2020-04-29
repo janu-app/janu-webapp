@@ -11,6 +11,7 @@ export default {
     },
     numbers() {
       return ['PRIMERA', 'SEGUNDA', 'TERCERA', 'CUARTA', 'QUINTA', 'SEXTA', 'SEPTIMA', 'OCTAVA', 'NOVENA', 'DÉCIMA']
+      //return ['SEGUNDA', 'TERCERA', 'CUARTA', 'QUINTA', 'SEXTA', 'SEPTIMA', 'OCTAVA', 'NOVENA', 'DÉCIMA']
     }
   },
   mutations: {

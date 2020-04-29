@@ -4,8 +4,6 @@ import router from '@/router'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 
-import axios from 'axios'
-
 class Auth {
 
   async createUser({ email, password }) {
@@ -34,7 +32,7 @@ class Auth {
       
       return firebase.auth().currentUser.getIdToken(true)
         .then((idToken) => {
-          axios.defaults.headers.common = {'Authorization': `Bearer ${idToken}`}
+          // axios.defaults.headers.common = {'Authorization': `Bearer ${idToken}`}
           return store.dispatch('auth/authenticate', {
             name: displayName ? displayName : 'Jhon Doe',
             email,
@@ -46,10 +44,9 @@ class Auth {
             })
           })
         }).catch(e => {
-          console.log(e)
+          Sentry.captureException(e)
         })
     } else {
-      console.log('No user found')
       router.push({ name: 'login' })
       return store.dispatch('auth/logout')
     }

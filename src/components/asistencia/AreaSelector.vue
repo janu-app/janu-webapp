@@ -53,7 +53,6 @@ export default {
   },
   async mounted() {
     this.classrooms = (await this.$store.dispatch('classrooms/loadClassroomInfo')).results
-    console.log('class', this.classrooms)
     if (this.$store.getters["classrooms/classroom"]) {
       this.form.turno = this.$store.getters["classrooms/classroom"].turno;
       this.form.grado = this.$store.getters["classrooms/classroom"].classroomId;
@@ -69,7 +68,6 @@ export default {
     onChangeGrado() {
       this.form.area = ''
       const turno = this.classrooms.filter(t => t.turno == this.form.turno)[0]
-      console.log(turno)
       if (turno && this.form.grado) {
         this.$emit('selected', Object.assign({}, this.form, turno.grades.filter(g => g.classroomId == this.form.grado)[0]))
       } else {

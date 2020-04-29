@@ -39,7 +39,7 @@
               <div class="control">
                 <div class="select" :class="{ 'is-danger': $v.form.week_number.$anyError }">
                   <select v-model="form.week_number">
-                    <option v-for="sessionNumber in $store.getters['sessions/numbers']" :value="sessionNumber" :key="sessionNumber">{{sessionNumber}}</option>
+                    <option v-for="sessionNumber in weekNumbers" :value="sessionNumber" :key="sessionNumber">{{sessionNumber}}</option>
                   </select>
                 </div>
                 <!-- <input class="input" type="text" placeholder="Nro. Semana" v-model="form.week_number" maxlength="9" :class="{ 'is-danger': $v.form.week_number.$anyError }" /> -->
@@ -106,6 +106,7 @@ export default {
         area_id: '',
         classroom_id: ''
       },
+      weekNumbers: ['TERCERA', 'CUARTA', 'QUINTA', 'SEXTA', 'SEPTIMA', 'OCTAVA', 'NOVENA', 'DÉCIMA'],
       showLoading: false
     }
   },
