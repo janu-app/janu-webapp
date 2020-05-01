@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '@/components/Home.vue'
 
 import { asistenciaRouter } from './components/asistencia'
+import { classroomsRouter } from './components/classrooms'
 import { authRouter } from './components/auth'
 
 import auth from './service/auth'
@@ -17,6 +18,7 @@ const routes = [
         component: Home
     },
     ...asistenciaRouter,
+    ...classroomsRouter,
     ...authRouter
 ]
 
