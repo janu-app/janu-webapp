@@ -10,8 +10,14 @@
                 <li>
                   <router-link :to="{ name: 'sesionesaprendoencasa'}">Aprendo en Casa</router-link>
                 </li>
-                <li v-if="$store.getters['me/me'].id == 'bd6b4cda-8a50-48d0-a7d7-3604275fc07b' || $store.getters['me/me'].id == '1cb2d774-b6dd-434f-a6b2-3b1c2f2a477e'">
+                <li v-if="$store.getters['me/me'].permissions.directivos">
                   <router-link :to="{ name: 'reportDirectivos'}">Directivos</router-link>
+                </li>
+              </ul>
+              <p class="menu-label">Administración</p>
+              <ul class="menu-list">
+                <li>
+                  <router-link :to="{ name: 'classroomsearch'}">Salones</router-link>
                 </li>
               </ul>
             </aside>
@@ -19,7 +25,7 @@
           <div class="column">
             <h3 class="title is-4 has-text-centered">Bienvenido</h3>
             <div class="content has-text-centered">
-              <figure class="image is-64x64">
+              <figure class="image is-64x64 is-inline-block">
                 <img style="width: 64px;" src="../assets/logo.png" />
               </figure>
             </div>

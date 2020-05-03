@@ -48,6 +48,10 @@ export default {
       const response = await axios.get(`/classrooms/${classroomId}/students`)
       commit('setStudentData', response.data.results)
     },
+    async joinStudent(obj, data) {
+      const response = await axios.post(`/classrooms/${data.classroomId}/students`, data)
+      return response.data
+    },
     async setClassroom({ commit }, classroom) {
       commit('setClassroom', classroom)
     }

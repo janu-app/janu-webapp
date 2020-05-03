@@ -12,10 +12,11 @@
             </li>
           </ul>
         </nav>
-        <h4 class="title is-4">Clases</h4>
-        <h5 class="subtitle is-5">Aquí podrás ver los alumnos en las clases asignadas.</h5>
 
-        <div class="field">
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <div class="field">
           <div class="field-body">
             <div class="field is-narrow">
               <label class="label is-small">Turno</label>
@@ -43,19 +44,26 @@
             </div>
           </div>
         </div>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <router-link v-if="$store.getters['me/me'].permissions.salones.asignar" class="button is-primary" :to="{name: 'classroomstudentsjoin', params: $route.params }">Nuevo</router-link>
+            </div>
+          </div>
+        </div>
+
         <p class="content has-text-centered" v-if="!students.length">Seleccione un grado y sección.</p>
-        <table class="table" v-if="students.length">
+        <table class="table is-fullwidth" v-if="students.length">
           <thead>
             <tr>
-              <th>Nro.</th>
+              <th style="width: 20px">Nro.</th>
               <th>Apellidos y Nombres</th>
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="(student, index) in students"
-              :key="student.lastname+student.lastname2+student.name"
-            >
+            <tr v-for="(student, index) in students" 
+              :key="student.lastname+student.lastname2+student.name" >
               <td>{{index+1}}</td>
               <td>{{student.lastname}} {{student.lastname2}}, {{student.name}}</td>
             </tr>
@@ -65,6 +73,7 @@
     </section>
   </home-layout>
 </template>
+
 <script>
 import HomeLayout from "../layout/HomeLayout.vue";
 
@@ -76,25 +85,31 @@ export default {
       form: {
         turno: "",
         grado: ""
-      }
-    };
+      },
+    }
   },
-  mounted() {
-    this.load();
+  async mounted() {
+    this.response = await this.$store.dispatch("classrooms/loadClassrooms");
+    const grades = this.response.results.map(r => r.grades).reduce((p, g) => p.concat(g), []).filter(g => g.classroomId == this.$route.params.classroomId)
+    if (grades.length) {
+      this.form.turno = grades[0].turno
+      this.form.grado = grades[0].classroomId
+    }
+    this.loadStudents()
   },
   methods: {
-    async load() {
-      this.response = await this.$store.dispatch("classrooms/loadClassrooms");
-    },
     async onChangeGrado() {
       this.$router.push({
         name: "classroomstudents",
         params: {
           classroomId: this.form.grado
         }
-      });
-      /*const response = await this.$store.dispatch('classrooms/loadStudentsAssigned', { classroomId: this.form.grado })
-      this.students = response.results*/
+      })
+      this.loadStudents()
+    },
+    async loadStudents() {
+      const response = await this.$store.dispatch('classrooms/loadStudentsAssigned', this.$route.params)
+      this.students = response.results
     }
   },
   computed: {
@@ -116,6 +131,6 @@ export default {
   },
   components: {
     HomeLayout
-  }
-};
+  },
+}
 </script>

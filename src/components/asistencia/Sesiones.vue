@@ -18,7 +18,7 @@
         <p class="content has-text-right">
           <router-link class="button is-primary" :to="{ name: 'newsesionesaprendoencasaform' }">Nueva sesión</router-link>
         </p>
-        <session-table :sessions="sessions" />
+        <session-table :sessions="sessions" @reload="onReload" />
       </div>
     </section>
   </home-layout>
@@ -41,13 +41,17 @@ export default {
     };
   },
   async mounted() {
-    try {
-      this.sessions = await this.$store.dispatch('sessions/loadSessionsReportData', { teacherId: this.$store.getters['me/me'].person_id, state: 'ACTIVE'})
-    } catch(e) {
-      Sentry.captureException(e)
-    }
+    this.onReload()
   },
   methods: {
+    async onReload() {
+      try {
+        this.sessions = await this.$store.dispatch('sessions/loadSessionsReportData', { teacherId: this.$store.getters['me/me'].person_id, state: 'ACTIVE'})
+      } catch(e) {
+        console.error(e)
+        Sentry.captureException(e)
+      }
+    },
     async cleanSelection() {
       this.sessions = []
       this.$store.dispatch("classrooms/setClassroom", {
