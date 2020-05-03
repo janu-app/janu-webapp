@@ -4,7 +4,7 @@
       <div class="columns">
         <div class="column is-4 is-offset-4">
           <div class="content has-text-centered">
-            <figure class="image is-64x64">
+            <figure class="image is-64x64 is-inline-block">
               <img src="../../assets/logo.png" style="width: 64px;" />
             </figure>
           </div>
