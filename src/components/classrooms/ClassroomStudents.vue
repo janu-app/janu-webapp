@@ -120,9 +120,9 @@ export default {
       return [];
     },
     grados() {
-      const grados = this.response.results.filter(
+      const grados = this.response && this.response.results ? this.response.results.filter(
         r => r.turno == this.form.turno
-      );
+      ) : []
       if (grados.length) {
         return grados[0].grades;
       }

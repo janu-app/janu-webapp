@@ -67,7 +67,7 @@ export default {
     },
     onChangeGrado() {
       this.form.area = ''
-      const turno = this.classrooms.filter(t => t.turno == this.form.turno)[0]
+      const turno = this.classrooms ? this.classrooms.filter(t => t.turno == this.form.turno)[0] : undefined
       if (turno && this.form.grado) {
         this.$emit('selected', Object.assign({}, this.form, turno.grades.filter(g => g.classroomId == this.form.grado)[0]))
       } else {

@@ -100,14 +100,14 @@ export default {
   computed: {
     turnos() {
       if (this.response && this.response.results) {
-        return this.response.results.map(g => g.turno);
+        return this.response && this.response.results ? this.response.results.map(g => g.turno) : []
       }
       return [];
     },
     grados() {
-      const grados = this.response.results.filter(
+      const grados = this.response && this.response.results ? this.response.results.filter(
         r => r.turno == this.form.turno
-      );
+      ) : []
       if (grados.length) {
         return grados[0].grades;
       }
