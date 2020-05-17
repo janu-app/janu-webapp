@@ -106,7 +106,7 @@ export default {
         area_id: '',
         classroom_id: ''
       },
-      weekNumbers: ['TERCERA', 'CUARTA', 'QUINTA', 'SEXTA', 'SEPTIMA', 'OCTAVA', 'NOVENA', 'DÉCIMA'],
+      weekNumbers: ['QUINTA', 'SEXTA', 'SEPTIMA', 'OCTAVA', 'NOVENA', 'DÉCIMA'],
       showLoading: false
     }
   },

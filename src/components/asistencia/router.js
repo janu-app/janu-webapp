@@ -3,6 +3,7 @@ import AsistenciaVirtual from './AsistenciaVirtual.vue'
 import NewAsistenciaVirtual from './NewAsistenciaVirtual.vue'
 
 import ReporteDirectivos from './ReporteDirectivos.vue'
+import ParticipationReport from './ParticipationReport.vue'
 
 const routes= [
     {
@@ -24,6 +25,11 @@ const routes= [
         name: 'reportDirectivos',
         path: '/sesiones/aprendo-en-casa/report',
         component: ReporteDirectivos
+    },
+    {
+        name: 'reportPaticipacion',
+        path: '/sesiones/aprendo-en-casa/participacion',
+        component: ParticipationReport
     },
 ]
 

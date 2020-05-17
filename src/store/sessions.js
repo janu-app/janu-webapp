@@ -49,6 +49,12 @@ export default {
     async updateSessionDetail(obj, { sessionId, ...details}) {
       const response = await axios.put(`/sessions/${sessionId}/detail/${details.id}`, details)
       return response.data
+    },
+
+    // engagement report
+    async loadEngagementReport(store, params) {
+      const response = await axios.get('/reports/sessions/participation', { params })
+      return response.data.results
     }
   }
 }

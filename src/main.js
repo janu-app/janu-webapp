@@ -27,7 +27,7 @@ Vue.use(VueTheMask)
 Vue.use(VueFeather)
 
 Sentry.init({
-  release: `janu-webapp@'0.0.3'`,
+  release: `janu-webapp@'${process.env.APP_VERSION}-${process.env.NODE_ENV || 'dev'}'`,
   dsn: 'https://2f2bc3d65e1542e7880be71c0dfc734d@o379917.ingest.sentry.io/5205265',
   integrations: [new VueIntegration({Vue, attachProps: true})],
 });

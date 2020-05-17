@@ -10,6 +10,9 @@
                 <li>
                   <router-link :to="{ name: 'sesionesaprendoencasa'}">Aprendo en Casa</router-link>
                 </li>
+                <li>
+                  <router-link :to="{ name: 'reportPaticipacion'}">Participación de estudiantes</router-link>
+                </li>
                 <li v-if="$store.getters['me/me'].permissions.directivos">
                   <router-link :to="{ name: 'reportDirectivos'}">Directivos</router-link>
                 </li>
