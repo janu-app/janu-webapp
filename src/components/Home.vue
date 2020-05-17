@@ -7,7 +7,7 @@
             <aside class="menu">
               <p class="menu-label">Seguimiento Sesiones</p>
               <ul class="menu-list">
-                <li>
+                <li v-if="$store.getters['me/me'].permissions.teachers">
                   <router-link :to="{ name: 'sesionesaprendoencasa'}">Aprendo en Casa</router-link>
                 </li>
                 <li>

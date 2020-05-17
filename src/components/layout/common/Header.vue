@@ -2,9 +2,11 @@
   <nav class="navbar is-white" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
     <router-link class="navbar-item" to="/">
-      <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
-      I.E. Lucyana
+      <img src="../../../assets/janu-logo.png" width="112" height="28">
     </router-link>
+    <div class="navbar-item">
+      I.E. Lucyana
+    </div>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navBaeeMenu" @click="onClickMenu">
       <span aria-hidden="true"></span>
